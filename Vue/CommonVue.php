@@ -21,8 +21,8 @@
                         <meta name='description' content='vtc transport site'>
                         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                         <title>VTC TRANSPORT</title>
-                        <link rel='icon' href='./../Assets/car.png' type='image/x-icon'>
-                        <script type ='text/javascript' src='./../Assets/jquery-3.6.0.js' ></script>
+                        <link rel='icon' href='./../Assets/img/logo.png' type='image/x-icon'>
+                        <script type ='text/javascript' src='./../Assets/lib/jquery-3.6.0.js' ></script>
                         <!-- <script type ='text/javascript' src='./../Vue/VueFormatter.js' ></script> -->
                         <link rel='stylesheet' href='./../Vue/styles.css' type='text/css'>
                         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.12.1/css/all.css' crossorigin='anonymous'>
@@ -57,7 +57,7 @@
 
         public function head(){
             echo "<header>
-                    <a href='/?view=PageAccueil'><img src='./../Assets/car.png' alt='logo'></a>
+                    <a href='/?view=PageAccueil'><img src='./../Assets/img/logo.png' alt='logo'></a>
                     <h1>VTC Transport de matériels et colis </h1>
                     <div>
                         <button id='inscription' onclick='window.location=\"/?view=Inscription\"'' >Inscription</button>

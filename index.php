@@ -1,7 +1,12 @@
 <?php
     session_start();
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    define('ROOT_PATH', __DIR__);
 
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Configuration.php');
+    ###require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Configuration.php');
+    require_once ROOT_PATH . '/Model/Configuration.php';
     Configuration::getConfiguration();
 
     $_SESSION['imageFolder']=dirname($_SERVER["DOCUMENT_ROOT"]).'/UploadImages';
@@ -28,7 +33,8 @@
 
     $Vue_name = ($_GET['view']??$Default_controller) ;
     $controller_name = $Controllers[$Vue_name].'Controller';
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Controller'.'/'.$controller_name.'.php');
+    ## $_SERVER['DOCUMENT_ROOT']
+    require_once(ROOT_PATH.'/Controller'.'/'.$controller_name.'.php');
     
     $c = new $controller_name($Vue_name);
     //var_dump($controller_name);

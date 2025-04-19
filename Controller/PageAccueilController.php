@@ -1,8 +1,8 @@
 <?php 
     require_once('CommonController.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Diaporama.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Annonce.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Vue/PageAccueilVue.php');
+    require_once(ROOT_PATH.'/Model/Diaporama.php');
+    require_once(ROOT_PATH.'/Model/Annonce.php');
+    require_once(ROOT_PATH.'/Vue/PageAccueilVue.php');
     class PageAccueilController extends CommonController
     {
         public function __construct($page){
@@ -26,8 +26,8 @@
         }
 
         public function viewPage(){
-            $slides = $this->getDiaporama() ;
-            $annonces = $this->getAnnonceSelection() ;
+            $slides = [];//$this->getDiaporama() ;
+            $annonces = []; //$this->getAnnonceSelection() ;
             $v = new PageAccueilVue($slides,$annonces);
             $v->view();
         }

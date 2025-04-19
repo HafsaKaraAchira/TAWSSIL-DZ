@@ -358,7 +358,7 @@
             }
         }
     }
-    //<script type ='text/javascript' src='./../Assets/jquery-3.5.0.js' ></script>
+    //<script type ='text/javascript' src='./../Assets/lib/jquery-3.5.0.js' ></script>
     /*
     echo "
                 <script>

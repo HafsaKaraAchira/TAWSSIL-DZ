@@ -1,6 +1,6 @@
 <?php
     require('CommonVue.php');
-    require($_SERVER['DOCUMENT_ROOT'].'/Vue/CadreVue.php');
+    require(ROOT_PATH.'/Vue/CadreVue.php');
     class PageAccueilVue extends CommonVue
     {
         private $slides ;
@@ -253,14 +253,13 @@
         public function view(){
             $this->entete();
             $this->head();
-            $this->diaporama();
+            // $this->diaporama();
             $this->menu();
             echo '<main>';
-            $this->contents();
+            // $this->contents();
             echo '</main>';
             $this->foot();
             $this->fermeture();
         }
     }
 ?>
-

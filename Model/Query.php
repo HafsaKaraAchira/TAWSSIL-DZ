@@ -7,16 +7,17 @@
         public $parameters ;
         public $result ;
         private $rowsCount ;
+        private $database_name = 'tawssil' ;
 
         function __construct($statement,$parameters=array()){
-            $db = "mysql:dbname=tdw; host: 127.0.0.1";
+            $db = "mysql:dbname=$this->database_name; host=127.0.0.1";
             try
             {
-                $this->conn= new PDO($db,"root","");
+                $this->conn= new PDO($db,"root","admin");
             }
             catch(PDOException $ex)
             {
-                printf("erreur de connexion :", $ex->getMessage());
+                echo("erreur de connexion :". $ex->getMessage());
                 exit();
             }
 

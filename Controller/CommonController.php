@@ -1,5 +1,5 @@
 <?php 
-    require_once(__DIR__.'/../Model/Configuration.php');
+    require_once(ROOT_PATH.'/Model/Configuration.php');
     abstract class CommonController
     {
         protected $v ;
