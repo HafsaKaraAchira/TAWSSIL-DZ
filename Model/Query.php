@@ -61,7 +61,10 @@
 
             foreach($this->parameters as $p)
             {
-                $sql->bindParam($p[0],$p[1],$p[2]);
+                $paramName = $p[0];
+                $paramValue = $p[1]; // Use a temporary variable
+                $paramType = $p[2];
+                $sql->bindParam($paramName, $paramValue, $paramType);
             }
             $sql->execute();
             //var_dump($this->conn->errorInfo());
