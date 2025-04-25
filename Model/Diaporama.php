@@ -6,10 +6,10 @@
             $query = new Query(
                 "SELECT image.ImageLink , 
                         slides.SlideLink 
-                FROM slides 
-                JOIN image 
-                ON slides.ImageID = image.ImageID 
-                ORDER BY slides.SlideID ASC
+                    FROM slides 
+                    JOIN image 
+                    ON slides.ImageID = image.ImageID 
+                    ORDER BY slides.SlideID ASC
                 "
             ) ;
             return $query->execute_query(PDO::FETCH_ASSOC) ;

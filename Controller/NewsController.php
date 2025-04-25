@@ -1,7 +1,7 @@
 <?php 
     require_once('CommonController.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/Model/News.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Vue/AllNewsVue.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/View/AllNewsVue.php');
     class NewsController extends CommonController
     {
         //private $id ;

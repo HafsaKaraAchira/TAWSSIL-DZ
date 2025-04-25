@@ -1,7 +1,8 @@
 <?php
-    require('CommonVue.php');
-    require(ROOT_PATH.'/Vue/CadreVue.php');
-    class PageAccueilVue extends CommonVue
+    require_once root_path('View/CommonView.php');
+    require_once root_path('View/CadreVue.php');
+    
+    class HomePageView extends CommonView
     {
         private $slides ;
         private $annonces;
@@ -16,7 +17,7 @@
             echo "<figure id='diaporama'>
                     <ul id='slide'>";
             foreach ($this->slides as $k => $slide) {
-                echo '<li><a href='.$slide['SlideLink'].' target="_blank" rel="noopener noreferrer" ><img src='.(substr_count($slide['ImageLink'],$_SESSION['imageFolder'])?"/?view=PageAccueil&action=viewImage&link=".basename($slide['ImageLink']):$slide['ImageLink']).' alt="diapo_'.$k.'"></a></li>' ;
+                echo '<li><a href='.$slide['SlideLink'].' target="_blank" rel="noopener noreferrer" ><img src='.(substr_count($slide['ImageLink'],$_SESSION['imageFolder'])?"/?view=HomePage&action=viewImage&link=".basename($slide['ImageLink']):$slide['ImageLink']).' alt="diapo_'.$k.'"></a></li>' ;
             }    
             echo "</ul>
                 </figure>";
@@ -251,15 +252,15 @@
         }
 
         public function view(){
-            $this->entete();
-            $this->head();
+            $this->CommonHTMLOpening();
+            $this->CommonPageHeader();
             // $this->diaporama();
-            $this->menu();
+            $this->MenuNavBar();
             echo '<main>';
             // $this->contents();
             echo '</main>';
-            $this->foot();
-            $this->fermeture();
+            $this->CommonFooter();
+            $this->CommonHTMLEnclosure();
         }
     }
 ?>

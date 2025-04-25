@@ -1,7 +1,7 @@
 <?php 
     require_once('CommonController.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Statistiques.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Vue/StatistiquesVue.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/View/StatistiquesVue.php');
     class StatistiquesController extends CommonController
     {
         public function __construct($page){

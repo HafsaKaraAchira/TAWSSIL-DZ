@@ -1,6 +1,6 @@
 <?php 
     require_once('CommonController.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Vue/CommonVue.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/View/CommonView.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Profile.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Annonce.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Transaction.php');

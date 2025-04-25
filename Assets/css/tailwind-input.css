@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer components {
+    .btn-primary {
+      @apply inline-block bg-primary text-white font-heading px-4 py-2 rounded hover:bg-primary-dark;
+    }
+    .card {
+      @apply bg-white shadow-lg rounded-lg p-6;
+    }
+} */
+
+@layer components {
+  .diaporama {
+      @apply relative w-full overflow-hidden; /* Ensure the container hides overflow */
+  }
+
+  .diaporama-slide {
+      @apply flex; /* Align all slides horizontally */
+      transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+  }
+
+  .diaporama-item {
+      @apply flex-shrink-0 w-full; /* Each slide takes up the full width */
+  }
+
+  .diaporama-image {
+      @apply w-full h-full object-cover; /* Ensure images fit the container */
+  }
+
+  .diaporama-button {
+      @apply absolute top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full hover:bg-primary-dark;
+  }
+
+  .diaporama-button-prev {
+      @apply left-4;
+  }
+
+  .diaporama-button-next {
+      @apply right-4;
+  }
+}
+
+@layer utilities {
+  .fixed-height {
+      height: 500px; /* Adjust this value as needed */
+  }
+}

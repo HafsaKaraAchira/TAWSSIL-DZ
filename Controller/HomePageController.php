@@ -2,8 +2,8 @@
     require_once('CommonController.php');
     require_once(ROOT_PATH.'/Model/Diaporama.php');
     require_once(ROOT_PATH.'/Model/Annonce.php');
-    require_once(ROOT_PATH.'/Vue/PageAccueilVue.php');
-    class PageAccueilController extends CommonController
+    require_once(ROOT_PATH.'/View/HomePageView.php');
+    class HomePageController extends CommonController
     {
         public function __construct($page){
             parent::__construct($page);
@@ -26,9 +26,9 @@
         }
 
         public function viewPage(){
-            $slides = [];//$this->getDiaporama() ;
+            $slides = $this->getDiaporama() ;
             $annonces = []; //$this->getAnnonceSelection() ;
-            $v = new PageAccueilVue($slides,$annonces);
+            $v = new HomePageView($slides,$annonces);
             $v->view();
         }
     }
