@@ -13,7 +13,7 @@ $this->username = !empty($_SESSION['profile']) ? $_SESSION['profile']['prenom'] 
     <script type='text/javascript' src='<?= asset('Assets/lib/jquery-3.6.0.js') ?>'></script>
     <link rel="stylesheet" href="<?= asset('Assets/css/theme.css') ?>">
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-    <!-- <link rel='stylesheet' href='<?= asset('View/styles.css') ?>' type='text/css'> -->
+    <!-- <link rel='stylesheet' href='<?= asset('Assets/css/theme.css') ?>' type='text/css'> -->
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.12.1/css/all.css' crossorigin='anonymous'> -->
     <script>
     let jq = jQuery.noConflict();

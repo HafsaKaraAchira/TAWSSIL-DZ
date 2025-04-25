@@ -18,6 +18,9 @@
 .static {
   position: static;
 }
+.isolate {
+  isolation: isolate;
+}
 .container {
   width: 100%;
 }

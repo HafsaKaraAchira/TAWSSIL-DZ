@@ -2,48 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-    .btn-primary {
-      @apply inline-block bg-primary text-white font-heading px-4 py-2 rounded hover:bg-primary-dark;
-    }
-    .card {
-      @apply bg-white shadow-lg rounded-lg p-6;
-    }
-} */
+/* workaround for @apply issues */
+@layer utilities {
+  /* bg-primary text-white hover:bg-primary-dark p-2 */
+}
+
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @layer components {
+  /* .btn-primary {
+    @apply inline-block bg-primary text-white font-heading px-4 py-2 rounded hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply inline-block bg-accentBlue text-white font-heading px-4 py-2 rounded hover:bg-accentYellow;
+  }
+
+  .card {
+    @apply bg-white shadow-lg rounded-lg p-6;
+  } 
+
   .diaporama {
-      @apply relative w-full overflow-hidden; /* Ensure the container hides overflow */
+    @apply relative w-full overflow-hidden;
   }
 
   .diaporama-slide {
-      @apply flex; /* Align all slides horizontally */
-      transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+    @apply flex;
+    transition: transform 0.5s ease-in-out;
   }
 
   .diaporama-item {
-      @apply flex-shrink-0 w-full; /* Each slide takes up the full width */
+    @apply flex-shrink-0 w-full;
   }
 
   .diaporama-image {
-      @apply w-full h-full object-cover; /* Ensure images fit the container */
+    @apply w-full h-full object-cover;
   }
 
   .diaporama-button {
-      @apply absolute top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full hover:bg-primary-dark;
+    @apply absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full;
   }
 
   .diaporama-button-prev {
-      @apply left-4;
+    @apply left-4;
   }
 
   .diaporama-button-next {
-      @apply right-4;
+    @apply right-4;
   }
 }
 
 @layer utilities {
   .fixed-height {
-      height: 500px; /* Adjust this value as needed */
+    height: 500px;
   }
-}
+} 
+ */

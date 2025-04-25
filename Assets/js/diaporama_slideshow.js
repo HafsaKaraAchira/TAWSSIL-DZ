@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     const slideCount = slides.length;
 
+
+
     // Set the initial position of the slides
     const updateSlidePosition = () => {
         slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -31,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     prevButton.addEventListener("click", () => {
         prevSlide();
     });
+    
+    console.log("Diaporama script loaded");
 
     // Auto-slide every 3 seconds
     setInterval(nextSlide, 3000);
