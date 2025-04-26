@@ -53,3 +53,18 @@ function is_post(): bool {
 function is_get(): bool {
     return $_SERVER['REQUEST_METHOD'] === 'GET';
 }
+
+/**
+ * Checks if a given URL is internal (relative) or external (absolute).
+ *
+ * @param string $url The URL to check.
+ * @return bool True if the URL is internal, false if it is external.
+ */
+function is_internal_url(string $url): bool {
+    // If the URL is a valid absolute URL, it is external
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+        return false;
+    }
+    // Check if the URL starts with '/' (internal) or does not match external patterns
+    return strpos($url, '/') === 0 ||  !preg_match('/^www\./i', $url) || !preg_match('/^[\w.-]+\.[a-z]{2,}$/i', $url) ;
+}

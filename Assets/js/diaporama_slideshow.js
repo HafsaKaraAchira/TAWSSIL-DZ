@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".diaporama-item");
     const slideContainer = document.querySelector("#slide");
+    const dots = document.querySelectorAll(".diaporama-dot");
     const prevButton = document.querySelector("#prev");
     const nextButton = document.querySelector("#next");
+    const diaporama = document.querySelector(".diaporama");
     let currentIndex = 0;
     const slideCount = slides.length;
-
-
+    let autoSlideInterval;
 
     // Set the initial position of the slides
     const updateSlidePosition = () => {
         slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateActiveDot(); // Update the active dot when the slide changes
     };
 
     // Move to the next slide
@@ -25,6 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlidePosition();
     };
 
+    // Update the active dot
+    const updateActiveDot = () => {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+        });
+    };
+
+    // Add event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            currentIndex = index; // Set the current index to the clicked dot's index
+            updateSlidePosition();
+        });
+    });
+
     // Add event listeners for navigation buttons
     nextButton.addEventListener("click", () => {
         nextSlide();
@@ -33,12 +50,26 @@ document.addEventListener("DOMContentLoaded", () => {
     prevButton.addEventListener("click", () => {
         prevSlide();
     });
-    
-    console.log("Diaporama script loaded");
 
     // Auto-slide every 3 seconds
-    setInterval(nextSlide, 3000);
+    const startAutoSlide = () => {
+        autoSlideInterval = setInterval(nextSlide, 3000);
+    };
 
-    // Initialize the slide position
+    const stopAutoSlide = () => {
+        clearInterval(autoSlideInterval);
+    };
+
+    // Pause auto-slide on hover
+    diaporama.addEventListener("mouseenter", stopAutoSlide);
+
+    // Resume auto-slide immediately after hover
+    diaporama.addEventListener("mouseleave", () => {
+        nextSlide(); // Move to the next slide immediately
+        startAutoSlide(); // Restart the interval
+    });
+
+    // Initialize the slide position and active dot
     updateSlidePosition();
+    startAutoSlide();
 });

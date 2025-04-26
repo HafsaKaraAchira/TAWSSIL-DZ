@@ -1,0 +1,206 @@
+/* 
+ This is a Tailwind CSS configuration file that sets up the content paths, theme customization, and plugins for a project.
+ It includes custom colors, fonts, and a plugin for typography.
+ It also imports the Tailwind CSS base styles and applies the theme settings. 
+ */
+ 
+
+
+/* @theme {
+  --color-primary: #00864A;
+  --color-primary-dark: #006B3A;
+  --color-accentBlue: #2A96F1;
+  --color-accentYellow: #EEB869;
+
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .btn-primary {
+        @apply inline-block bg-primary text-white font-heading px-4 py-2 rounded hover:bg-primary-dark;
+    }
+
+    .btn-secondary {
+        @apply inline-block bg-accentBlue text-white font-heading px-4 py-2 rounded hover:bg-accentYellow;
+    }
+  
+    .card {
+      @apply bg-white shadow-lg rounded-lg p-6;
+    }
+  
+    .diaporama {
+      @apply relative w-full max-w-5xl mx-auto overflow-hidden my-6 rounded-3xl bg-transparent;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.22); /* Shadow around the entire diaporama */
+      position: relative; /* Ensure the container is positioned relative for the overlay */
+    }
+
+    .diaporama::after {
+        content: ''; /* Add a pseudo-element for the shadow */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent); /* Gray shadow from bottom to top */
+        border-radius: inherit; /* Match the diaporama's border radius */
+        pointer-events: none; /* Ensure the shadow does not interfere with interactions */
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+        z-index: 1; /* Ensure the shadow appears above the images */
+    }
+
+    .diaporama:hover::after {
+        opacity: 1; /* Show the shadow on hover */
+    }
+  
+    .diaporama-slide {
+      @apply flex transition-transform ease-in-out duration-500 bg-transparent;
+      scroll-snap-type: x mandatory; /* Ensure snapping to each slide */
+      gap: 0; /* Remove any gaps between slides */
+    }
+  
+    .diaporama-item {
+      @apply flex-shrink-0 w-full h-full bg-transparent rounded-3xl; /* Ensure each item takes up the full width and height of the container */
+      scroll-snap-align: center; /* Snap each item to the center */
+    }
+  
+    .diaporama-image {
+      @apply w-full h-full object-cover rounded-3xl; /* Ensure the image fills the container without distortion */
+    }
+  
+    .diaporama-button {
+      @apply absolute top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-black/30 hover:bg-accentYellow/50;
+    }
+  
+    .diaporama-button-prev {
+      @apply left-4;
+    }
+  
+    .diaporama-button-next {
+      @apply right-4;
+    }
+
+    .diaporama-dots {
+        @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2;
+    }
+
+    .diaporama-dot {
+        @apply w-3 h-3 rounded-full bg-gray-400 hover:bg-primary-dark transition-colors cursor-pointer;
+    }
+
+    .diaporama-dot.active {
+        @apply bg-accentYellow; /* Use your custom yellow color */
+        transition: all 0.3s ease-in-out; /* Smooth transition */
+        width: 24px; /* Stretch horizontally */
+        /* height: 6px; /*Flatten vertically */
+        border-radius: 9999px; /* Oval shape */
+    }
+
+    .diaporama:hover .diaporama-slide {
+        transition: transform 0.5s ease-in-out; /* Keep smooth transition */
+    }
+
+    .diaporama:hover .diaporama-dot {
+        transition: none !important; /* Stop the dots' transition effect */
+    }
+
+    .diaporama-item:hover .diaporama-image {
+        position: relative; /* Ensure the shadow effect is positioned relative to the image */
+        overflow: hidden; /* Prevent the shadow from spilling outside the image */
+    }
+
+    .diaporama-item:hover .diaporama-image::after {
+        content: ''; /* Add a pseudo-element for the shadow */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent); /* Gray shadow from bottom to top */
+        border-radius: inherit; /* Match the image's border radius */
+        pointer-events: none; /* Ensure the shadow does not interfere with interactions */
+        z-index: 1; /* Ensure the shadow appears above the image */
+    }
+
+    .navbar {
+        @apply bg-primary text-white flex justify-between items-center px-6 py-4 shadow-md; /* Navbar container */
+    }
+
+    .navbar a {
+        @apply text-white font-heading px-4 py-2 hover:text-accentBlue transition-colors; /* Default link styling */
+    }
+
+    .navbar a.active {
+        @apply text-accentYellow font-bold; /* Use creamy white for better contrast */
+    }
+
+    .footer {
+        @apply bg-primary-dark text-white text-center py-4;
+    }
+
+    .footer-links {
+        @apply flex justify-center space-x-6;
+    }
+
+    .footer-link {
+        @apply hover:text-accentYellow;
+    }
+
+    .footer-text {
+        @apply mt-4 text-sm;
+    }
+
+    .header {
+        @apply bg-creamyWhite text-contrastText flex justify-between items-center px-6 py-4 shadow-md; /* Header container */
+    }
+
+    .header-logo {
+        @apply flex items-center space-x-2; /* Logo container */
+    }
+
+    .header-logo-img {
+        @apply h-10; /* Logo image size */
+    }
+
+    .header-logo-text {
+        @apply text-lg font-heading font-semibold text-logoAccent; /* Logo text styling */
+    }
+
+    .header-title {
+        @apply text-xl font-heading font-bold; /* Header title styling */
+    }
+
+    .header-buttons {
+        @apply flex space-x-4; /* Buttons container */
+    }
+
+    .header-nav {
+        @apply flex space-x-6; /* Navigation links */
+    }
+
+    .header-nav a {
+        @apply text-contrastText font-body text-sm hover:text-logoAccent transition-colors; /* Contrast text with hover effect */
+    }
+
+    .header-nav a.active {
+        @apply text-logoAccent font-bold; /* Highlight active link */
+    }
+
+    .header-button {
+        @apply bg-logoAccent text-white font-body px-4 py-2 rounded hover:bg-contrastText hover:text-creamyWhite transition-colors; /* Button with hover effect */
+    }
+
+    .btn-primary {
+        @apply bg-logoAccent text-white font-body px-4 py-2 rounded hover:bg-contrastText hover:text-creamyWhite transition-colors; /* Primary button */
+    }
+
+    .btn-secondary {
+        @apply bg-primary text-white font-body px-4 py-2 rounded hover:bg-primary-dark transition-colors; /* Secondary button */
+    }
+}

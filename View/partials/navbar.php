@@ -1,5 +1,5 @@
-<nav>
-    <a href='/?view=HomePage'>Accueil</a>
+<nav class="navbar">
+    <a href='/?view=HomePage' class="active">Accueil</a>
     <a href='/?view=Presentation'>Présentation</a>
     <a href='/?view=AllNews'>News</a>
     <a href='/?view=Inscription'>Inscription</a>
