@@ -10,6 +10,7 @@
  * Properties:
  * - $my_secret_key (protected): A secret key used internally (not currently utilized in the code).
  * - $username (protected): Stores the username of the logged-in user or defaults to 'anonymous'.
+ * - $pageScripts (protected): An array to store page-specific scripts.
  * 
  * Methods:
  * - __get($property): Magic method to retrieve the value of a property.
@@ -33,6 +34,7 @@ abstract class CommonView
 
     protected $my_secret_key = '3klmsd94mms.saeo44o!!3le';
     protected $username; //='anonymous' ;
+    protected $pageScripts = []; // Add this property to store page-specific scripts
 
     public function __get($property)
     {
@@ -41,6 +43,8 @@ abstract class CommonView
 
     public function CommonHTMLOpening()
     {
+        // Pass the $pageScripts variable to the opening.php file
+        $pageScripts = $this->pageScripts;
         include root_path('View/partials/opening.php');
     }
 

@@ -1,35 +1,68 @@
 <?php
-    require_once(ROOT_PATH.'/Model/Query.php');
-    class Configuration{
-        /*private static $nbVueAnnonce;
-        private static $nbVueNews;
-        private static $Selectioncriteria;
-        private static $contentFont;
-        private static $TitleFont;
-        private static $SlideDuration;*/
+require_once(ROOT_PATH . '/Model/Query.php');
 
-        public function __get($property){return $this->property;}
+class Configuration
+{
+    // Singleton instance of the configuration
+    private static $instance = null;
 
-        public function __set($name, $value){ /*empty*/}
+    // Private constructor to prevent direct instantiation
+    private function __construct() {}
 
-        public static function getConfiguration(){
-            $_SESSION['configuration'] = array() ;
-            $query = new Query("SELECT * FROM `configuration` WHERE 1") ;
-            $_SESSION['configuration']['general'] = $query->execute_query(PDO::FETCH_ASSOC)[0]  ;
-
-                // $query = new Query("SELECT * FROM `poidsintervalles` WHERE 1") ;
-                // $_SESSION['configuration']['poids'] = $query->execute_query(PDO::FETCH_ASSOC) ;
-
-                // $query = new Query("SELECT * FROM `volumeintervalles` WHERE 1") ;
-                // $_SESSION['configuration']['volume'] = $query->execute_query(PDO::FETCH_ASSOC) ;
-
-                // $query = new Query("SELECT * FROM `type_transport` WHERE 1") ;
-                // $_SESSION['configuration']['typeTransport'] = $query->execute_query(PDO::FETCH_ASSOC) ;
-
+    // Public method to get the singleton instance
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+            self::$instance->initialize();
         }
+        return self::$instance;
+    }
 
-        public function majConfiguration(){
-            
+    // Initialize the configuration and load static data
+    private function initialize()
+    {
+        if (!isset($_SESSION['configuration'])) {
+            $_SESSION['configuration'] = array();
+
+            // Load configuration data from the database
+            $this->loadGeneralConfiguration();
+
+            // Load static data
+            $this->loadWilayas();
+            $this->loadPoids();
+            $this->loadVolumes();
         }
     }
-?>
+
+    private function loadGeneralConfiguration()
+    {
+        // Fetch general configuration
+        $query = new Query("SELECT * FROM `configuration` WHERE 1");
+        $_SESSION['configuration']['general'] = $query->execute_query(PDO::FETCH_ASSOC)[0];
+    }
+
+    private function loadWilayas()
+    {
+        if (!isset($_SESSION['wilayas'])) {
+            $query = new Query("SELECT WilayaID, WilayaCode, WilayaName FROM wilaya ORDER BY WilayaCode");
+            $_SESSION['wilayas'] = $query->execute_query(PDO::FETCH_ASSOC);
+        }
+    }
+
+    private function loadPoids()
+    {
+        if (!isset($_SESSION['poids'])) {
+            $query = new Query("SELECT PoidsIntervalleID, MinPoids, MaxPoids FROM poidsintervalles ORDER BY MinPoids");
+            $_SESSION['poids'] = $query->execute_query(PDO::FETCH_ASSOC);
+        }
+    }
+
+    private function loadVolumes()
+    {
+        if (!isset($_SESSION['volumes'])) {
+            $query = new Query("SELECT VolumeIntervalleID, MinVolume, MaxVolume FROM volumeintervalles ORDER BY MinVolume");
+            $_SESSION['volumes'] = $query->execute_query(PDO::FETCH_ASSOC);
+        }
+    }
+}

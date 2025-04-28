@@ -17,12 +17,11 @@ require_once ROOT_PATH . '/Utils/helpers.php';
 
 // Load configuration model
 require_once ROOT_PATH . '/Model/Configuration.php';
-Configuration::getConfiguration();
+// Configuration::getConfiguration();
 
 define('IMG_FOLDER', ROOT_PATH . 'Assets/img/');
 
-//$_SESSION['imageFolder'] = ROOT_PATH . "Assets/img/" ; //dirname($_SERVER["DOCUMENT_ROOT"]) . '/UploadImages';
-
+// map view name to controller
 $Controllers = array(
     'HomePage' => 'HomePage',
     'Login' => 'Profile',
@@ -41,11 +40,15 @@ $Controllers = array(
 $Default_controller = 'HomePage';
 
 
-#### routing to appropriateController
-
+#### routing to appropriate Controller
 $Vue_name = ($_GET['view'] ?? $Default_controller);
 $controller_name = $Controllers[$Vue_name] . 'Controller';
-## $_SERVER['DOCUMENT_ROOT']
+// if (!class_exists($controller_name)) {
+//     // If the controller class does not exist, redirect to the default controller
+//     $controller_name = $Controllers[$Default_controller] . 'Controller';
+//     $Vue_name = $Default_controller;
+// }
+// load the controller class
 require_once(ROOT_PATH . '/Controller' . '/' . $controller_name . '.php');
 
 $c = new $controller_name($Vue_name);

@@ -1,8 +1,9 @@
 <?php 
-    require_once('CommonController.php');
-    require_once(ROOT_PATH.'/Model/Diaporama.php');
-    require_once(ROOT_PATH.'/Model/Annonce.php');
-    require_once(ROOT_PATH.'/View/HomePageView.php');
+    require_once(root_path('Controller/CommonController.php'));
+    require_once(root_path('Model/Diaporama.php'));
+    require_once(root_path('Model/Annonce.php'));
+    require_once(root_path('View/HomePageView.php'));
+
     class HomePageController extends CommonController
     {
         public function __construct($page){
@@ -17,7 +18,9 @@
 
         public function getAnnonceSelection(){
             //var_dump(Configuration::getConfiguration());
-            Configuration::getConfiguration() ;
+            // Configuration::getConfiguration() ;
+            // Load configuration and static data
+            Configuration::getInstance();
             $nbAnnonces = (int)$_SESSION['configuration']['general']['nbVueAnnonce'] ;
             //var_dump($nbAnnonces);
             $this->m = new Annonce() ;

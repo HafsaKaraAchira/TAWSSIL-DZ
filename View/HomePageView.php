@@ -9,23 +9,32 @@ class HomePageView extends CommonView
 
     public function __construct($slides, $annonces)
     {
+        $this->pageScripts = [ // Define the scripts for the home page
+            'Assets/js/dz-map-hover.js',
+            'Assets/js/reverse.js',
+        ];
         $this->slides = $slides;
         $this->annonces = $annonces;
     }
 
     public function diaporama()
-    {
-        $slides = $this->slides; // Assign the slides to a local variable
+    {   
+        // Extract the slides variable to pass to the daiaporama view
+        $slides = $this->slides; 
         include root_path('View/partials/diaporama.php'); // Include the partial
     }
 
+    public function search()
+    {
+        include root_path('View/partials/search.php');
+    }
 
     public function contents()
     {
         $this->diaporama(); // Render the diaporama
-
-        // include root_path('View/partials/diaporama.php');
-        // include root_path('View/pages/search.php');
+        $this->search(); // Render the search form
+    
+        
         // include root_path('View/pages/selection.php');
 
         // if (!empty($_SESSION['profile'])) {
@@ -48,4 +57,5 @@ class HomePageView extends CommonView
     //     $this->CommonFooter();
     //     $this->CommonHTMLEnclosure();
     // }
+
 }

@@ -8,13 +8,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#00864A",
-        "primary-dark": "#006B3A",
-        accentBlue: "#2ab5e4",
-        accentYellow: "#EEB869",
+        primary: {
+          DEFAULT: "#00864A", // Base color
+          light: "#33A76C", // Lighter version
+          dark: "#006B3A", // Darker version
+        },
+        accentYellow: {
+          DEFAULT: "#EEB869",
+          light: "#F3C78A",
+          dark: "#D99A4E",
+        },
+        accentBlue: {
+          DEFAULT: "#1886e4",
+          light: "#4FA3F0",
+          dark: "#1269B0",
+        },
         creamyWhite: "#FAF3E0", // Add creamy white color
+        lightGray: "#e7dde7", // e7dde7   e6e0fe
         contrastText: "#333333", // Dark text for contrast
-        logoAccent: "#EEB869", // Accent color for logo
+        lightText: "#666666", // Light text for contrast
+        darkText: "#111111", // Dark text for contrast
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

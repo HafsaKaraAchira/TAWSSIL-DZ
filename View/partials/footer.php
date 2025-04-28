@@ -7,5 +7,5 @@
         <a href='/?view=Statistiques' class="footer-link">Statistiques</a>
         <a href='/?view=Contact' class="footer-link">Contact</a>
     </div>
-    <p class="footer-text">&copy; <?= date('Y') ?> VTC Transport. Tous droits réservés.</p>
+    <p class="footer-text">&copy; <?= date('Y') ?> TAWSSIL-DZ. Tous droits réservés.</p>
 </footer>

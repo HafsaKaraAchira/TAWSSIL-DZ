@@ -23,11 +23,11 @@
 
 @layer components {
     .btn-primary {
-        @apply inline-block bg-primary text-white font-heading px-4 py-2 rounded hover:bg-primary-dark;
+        @apply bg-accentYellow text-white font-body px-4 py-2 rounded hover:bg-accentYellow-dark transition-colors; /* Primary button with darker hover */
     }
 
     .btn-secondary {
-        @apply inline-block bg-accentBlue text-white font-heading px-4 py-2 rounded hover:bg-accentYellow;
+        @apply bg-primary text-white font-body px-4 py-2 rounded hover:bg-primary-dark transition-colors; /* Secondary button with darker hover */
     }
   
     .card {
@@ -47,7 +47,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent); /* Gray shadow from bottom to top */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent); /* Gray shadow from bottom to top */
         border-radius: inherit; /* Match the diaporama's border radius */
         pointer-events: none; /* Ensure the shadow does not interfere with interactions */
         opacity: 0; /* Initially hidden */
@@ -133,7 +133,7 @@
     }
 
     .navbar a {
-        @apply text-white font-heading px-4 py-2 hover:text-accentBlue transition-colors; /* Default link styling */
+        @apply text-white font-heading px-4 py-2 hover:text-lightGray transition-colors; /* Default link styling */
     }
 
     .navbar a.active {
@@ -169,7 +169,7 @@
     }
 
     .header-logo-text {
-        @apply text-lg font-heading font-semibold text-logoAccent; /* Logo text styling */
+        @apply text-lg font-heading font-semibold text-accentYellow; /* Logo text styling */
     }
 
     .header-title {
@@ -185,22 +185,119 @@
     }
 
     .header-nav a {
-        @apply text-contrastText font-body text-sm hover:text-logoAccent transition-colors; /* Contrast text with hover effect */
+        @apply text-contrastText font-body text-sm hover:text-accentYellow transition-colors; /* Contrast text with hover effect */
     }
 
     .header-nav a.active {
-        @apply text-logoAccent font-bold; /* Highlight active link */
+        @apply text-accentYellow font-bold; /* Highlight active link */
     }
 
     .header-button {
-        @apply bg-logoAccent text-white font-body px-4 py-2 rounded hover:bg-contrastText hover:text-creamyWhite transition-colors; /* Button with hover effect */
+        @apply bg-accentYellow text-white font-body px-4 py-2 rounded hover:bg-contrastText hover:text-creamyWhite transition-colors; /* Button with hover effect */
     }
 
-    .btn-primary {
-        @apply bg-logoAccent text-white font-body px-4 py-2 rounded hover:bg-contrastText hover:text-creamyWhite transition-colors; /* Primary button */
+    .search-form {
+        @apply flex flex-col md:flex-row md:space-x-6 my-8 px-4; /* Add margin and padding for spacing */
     }
 
-    .btn-secondary {
-        @apply bg-primary text-white font-body px-4 py-2 rounded hover:bg-primary-dark transition-colors; /* Secondary button */
+    .search-form-container {
+        @apply flex-1; /* Form takes up equal space */
+    }
+
+    .search-form-content {
+        @apply space-y-6 px-20; /* Add spacing between form elements */
+    }
+
+    .search-form-title {
+        @apply text-2xl font-heading font-bold text-primary-dark my-10 text-center; /* Title styling */
+    }
+
+    .search-form-group {
+        @apply flex flex-col md:flex-row md:space-x-6; /* Align fields horizontally on larger screens */
+    }
+
+    .search-form-field {
+        @apply relative w-full mb-5; /* Add bottom margin for spacing between fields */
+    }
+
+    .search-form-field-wrapper {
+        @apply relative; /* Wrapper for the select field and icon */
+    }
+
+    .search-form-select-wrapper {
+        @apply relative; /* Wrapper for the select field and custom arrow */
+    }
+
+    .search-form-select {
+        @apply w-full h-12 rounded-full border border-gray-300 shadow-sm focus:ring-primary focus:border-primary pl-12 pr-12 text-gray-700 appearance-none; /* Adjust height, padding, and remove default arrow */
+    }
+
+    .search-form-icon {
+        @apply absolute inset-y-0 left-4 flex items-center text-accentBlue-light; /* Icon styling inside the fields */
+    }
+
+    .search-form-arrow {
+        @apply absolute top-1/2 right-4 flex items-center pointer-events-none text-accentBlue-light; /* Custom arrow styling */
+        transform: translateY(-50%); /* Center the arrow vertically */
+        content: ''; /* Add a pseudo-element for the arrow */
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid currentColor; /* Use the current text color for the arrow */
+    }
+
+    .search-form-select-wrapper {
+        @apply relative; /* Wrapper for the select field and custom arrow */
+    }
+
+    .search-form-submit-container {
+        @apply text-center; /* Center the submit button */
+    }
+
+    .search-form-submit {
+        @apply bg-accentBlue text-white font-heading px-8 py-3 rounded-full hover:bg-accentBlue-dark transition-colors shadow-md; /* Submit button styling */
+    }
+
+    .search-form-submit:hover {
+        @apply shadow-lg; /* Add hover shadow for the button */
+    }
+
+    .map-container {
+        @apply flex justify-center items-center w-full h-[90%] md:w-[50%] ;
+        /* background-color: theme('colors.creamyWhite'); /*Use creamy white background */
+        /* border: 2px solid theme('colors.primary.dark'); /*Add a border with a darker primary color */
+    }
+
+    .dz-map-svg {
+        @apply w-full h-full flex justify-center items-center; /* Center the SVG inside the container */
+    }
+
+    .dz-map-svg svg {
+        @apply w-full h-full object-contain ; /* Ensure the SVG scales properly */
+    }
+
+    .dz-map-svg path {
+        @apply fill-primary transition-colors duration-300 ease-in-out hover:fill-accentYellow-dark; /* Default color with smooth transition */
+    }
+
+    .search-form-group-vertical {
+        @apply flex flex-col space-y-1 my-0; /* Stack the fields vertically with spacing */
+    }
+
+    .search-form-group-vertical > * {
+        @apply m-0; /* Remove margins for the children */
+    }
+
+    .reverse-button-container {
+        @apply flex justify-center items-center; /* Center the reverse button */
+    }
+
+    .reverse-button {
+        @apply bg-accentBlue text-white p-2 rounded-full shadow-md hover:bg-accentBlue-dark transition-colors; /* Style the reverse button */
+    }
+
+    .reverse-button i {
+        @apply text-lg; /* Style the icon inside the button */
     }
 }

@@ -1,89 +1,96 @@
 <?php
-require_once(ROOT_PATH . '/Model/Configuration.php');
+require_once(root_path('Model/Configuration.php'));
+require_once(root_path('Model/Query.php'));
+
+/**
+ * Abstract class CommonController
+ * 
+ * This class serves as a base controller for all other controllers in the application.
+ * It provides common functionality such as rendering images and defining the structure
+ * for child controllers.
+ */
 abstract class CommonController
 {
+    /**
+     * @var mixed $v View object associated with the controller
+     */
     protected $v;
+
+    /**
+     * @var mixed $m Model object associated with the controller
+     */
     protected $m;
+
+    /**
+     * @var string $page The current page being handled by the controller
+     */
     protected $page;
 
+    /**
+     * Constructor for the CommonController
+     * 
+     * @param string $page The name of the page being handled
+     */
     public function __construct($page)
     {
         $this->page = $page;
+        // Load configuration and static data
+        Configuration::getInstance();
     }
 
-    // public function doUploadImages()
-    // {
-    //     $data = array();
-    //     if (!file_exists($_SESSION['imageFolder'])) {
-    //         mkdir($_SESSION['imageFolder'], 0777, true); // Create a new direcotry
-    //     }
-    //     $fileCount = count($_FILES["images"]['name']); //files numbers
-    //     for ($i = 0; $i < $fileCount; $i++) {
-    //         $target_file = $_SESSION['imageFolder'] . '/' . basename($_FILES["images"]["name"][$i]);
-    //         $uploadOk = 1;
-    //         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    //         // Check if image file is a actual image or fake image
-    //         $check = getimagesize($_FILES["images"]["tmp_name"][$i]);
-    //         if ($check !== false) {
-    //             echo "File is an image - " . $check["mime"] . ".";
-    //             $uploadOk = 1;
-    //         } else {
-    //             echo "File is not an image.";
-    //             $uploadOk = 0;
-    //         }
-
-    //         // Check if file already exists
-    //         if (file_exists($target_file)) {
-    //             $uploadOk = 0;
-    //         }
-
-    //         if ($uploadOk == 1) {
-    //             if (move_uploaded_file($_FILES["images"]["tmp_name"][$i], $target_file)) {
-    //                 var_export($uploadOk);
-    //             }
-    //         }
-    //         array_push($data, $target_file);
-    //     }
-    //     return $data;
-    // }
-
-    public function doOutputImage($imagename)
+    /**
+     * Loads static data into session variables
+     * 
+     * This method checks if certain static data is already stored in session variables.
+     * If not, it queries the database and stores the data in the session.
+     */
+    private function loadStaticData()
     {
-        $imagepath = $_SESSION['imageFolder'] . '/' . $imagename;
-        ob_start();
-        $mimetype = mime_content_type($imagepath);
-        header('Content-Type: ' . $mimetype);
-        ob_end_clean();
-        //var_dump(file_exists($imagepath));
-        $fp = fopen($imagepath, 'rb');
-        echo fpassthru($fp);
-        //exit;
+        
     }
 
+    /**
+     * Renders an image from the server
+     * 
+     * This method serves an image file from the server to the client. It determines
+     * the MIME type of the image and sends the appropriate headers.
+     * 
+     * @param string $link The relative path to the image file
+     */
     public function viewImage($link)
     {
+        // Clear any existing output buffers to prevent corrupting the image output
         if (ob_get_level()) {
-            ob_end_clean(); // Clear any existing output buffers
+            ob_end_clean();
         }
 
+        // Construct the full path to the image file
         $imagePath = ROOT_PATH . '/Assets/img/' . rawurldecode($link);
-        // echo "Image Path: " . $imagePath . "<br>";
-        // error_log("Serving image from path: " . $imagePath);
 
+        // Check if the image file exists
         if (file_exists($imagePath)) {
-            // header('Content-Type: image/png');
+            // Determine the MIME type of the image
             $mimeType = mime_content_type($imagePath);
+
+            // Send appropriate headers for the image
             header('Content-Type: ' . $mimeType);
             header('Content-Length: ' . filesize($imagePath));
+
+            // Output the image content
             readfile($imagePath);
             exit;
         } else {
+            // If the image file does not exist, send a 404 response
             http_response_code(404);
-            // echo "Image not found at: " . $imagePath;
             exit;
         }
     }
 
+    /**
+     * Abstract method for rendering a page
+     * 
+     * This method must be implemented by child classes to handle rendering
+     * specific pages.
+     */
     abstract public function viewPage();
 }

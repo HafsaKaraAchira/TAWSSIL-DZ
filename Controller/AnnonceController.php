@@ -1,9 +1,10 @@
 <?php 
     require_once('CommonController.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Annonce.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/Model/Transaction.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/View/AnnonceVue.php');
-    require_once($_SERVER['DOCUMENT_ROOT'].'/View/RechercheVue.php');
+    require_once(root_path('Model/Annonce.php'));
+    require_once(root_path('Model/Transaction.php'));
+    require_once(root_path('View/AnnonceVue.php'));
+    require_once(root_path('View/RechercheVue.php'));
+    
     class AnnonceController extends CommonController
     {
         //private $id ;
