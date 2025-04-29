@@ -209,7 +209,7 @@
     }
 
     .search-form-title {
-        @apply text-2xl font-heading font-bold text-primary-dark my-10 text-center; /* Title styling */
+        @apply text-xl font-heading font-bold text-primary-dark my-10 text-center; /* Title styling */
     }
 
     .search-form-group {
@@ -264,7 +264,7 @@
     }
 
     .map-container {
-        @apply flex justify-center items-center w-full h-[90%] md:w-[50%] ;
+        @apply flex justify-center items-center w-full h-[80%] md:w-[50%] ;
         /* background-color: theme('colors.creamyWhite'); /*Use creamy white background */
         /* border: 2px solid theme('colors.primary.dark'); /*Add a border with a darker primary color */
     }
@@ -278,7 +278,7 @@
     }
 
     .dz-map-svg path {
-        @apply fill-primary transition-colors duration-300 ease-in-out hover:fill-accentYellow-dark; /* Default color with smooth transition */
+        @apply fill-primary transition-colors duration-300 ease-in-out hover:fill-accentYellow-light; /* Default color with smooth transition */
     }
 
     .search-form-group-vertical {
@@ -299,5 +299,30 @@
 
     .reverse-button i {
         @apply text-lg; /* Style the icon inside the button */
+    }
+
+    .floating-label {
+        @apply absolute bg-white text-black text-sm px-2 py-1 rounded shadow-lg z-50;
+    }
+
+    .map-pin {
+        @apply absolute bg-red-600 text-white rounded-full w-20 h-20 flex items-center justify-center shadow-lg z-50;
+        /* @apply absolute bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center shadow-lg ; */
+    }
+
+    /* .map-pin >  {
+        @apply fill-error-dark; 
+    } */
+
+    .map-arrow{
+        @apply stroke-error-light;
+    }
+
+    .info {
+        @apply bg-warning-light/60 text-warning-dark font-heading text-lg text-center px-6 py-4 m-10 rounded-lg shadow-md flex items-center justify-center space-x-4;
+    }
+
+    .info-icon {
+        @apply text-warning-dark text-2xl;
     }
 }

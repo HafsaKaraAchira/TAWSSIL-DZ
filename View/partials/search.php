@@ -94,8 +94,8 @@
     </div>
 
     <!-- Map Container -->
-    <div id="dz-map" class="map-container">
+    <div id="dz-map" class="map-container relative">
         <!-- Include the SVG file -->
-        <div class="dz-map-svg" data-map-url="<?= asset('Assets/img/dz.svg') ?>"></div>
+        <div class="dz-map-svg relative" data-map-url="<?= asset('Assets/img/dz.svg') ?>"></div>
     </div>
 </section>

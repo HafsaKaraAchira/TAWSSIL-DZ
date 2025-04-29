@@ -18,7 +18,7 @@ $this->username = !empty($_SESSION['profile']) ? $_SESSION['profile']['prenom'] 
     <!-- Dynamically include page-specific scripts -->
     <?php if (!empty($pageScripts)): ?>
         <?php foreach ($pageScripts as $script): ?>
-            <script type="text/javascript" src="<?= asset($script) ?>"></script>
+            <script type="module" src="<?= asset($script) ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 </head>

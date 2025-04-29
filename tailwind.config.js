@@ -23,11 +23,23 @@ module.exports = {
           light: "#4FA3F0",
           dark: "#1269B0",
         },
+        contrastText: {
+          DEFAULT: "#333333", // Dark text for contrastText
+          light: "#666666", // Light text for contrast
+          dark: "#111111", // Dark text for contrast
+        },
+        warning: {
+          DEFAULT: "#FFC107", // Base warning color
+          light: "#FFD54F", // Lighter version
+          dark: "#FFA000", // Darker version
+        },
+        error: {
+          DEFAULT: "#DC3545", // Base error color
+          light: "#E57373", // Lighter version
+          dark: "#C82333", // Darker version
+        },
         creamyWhite: "#FAF3E0", // Add creamy white color
         lightGray: "#e7dde7", // e7dde7   e6e0fe
-        contrastText: "#333333", // Dark text for contrast
-        lightText: "#666666", // Light text for contrast
-        darkText: "#111111", // Dark text for contrast
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
@@ -36,5 +48,24 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      const colors = theme("colors");
+      const cssVariables = Object.keys(colors).reduce((acc, colorKey) => {
+        const color = colors[colorKey];
+        if (typeof color === "string") {
+          acc[`--tw-color-${colorKey}`] = color;
+        } else {
+          Object.keys(color).forEach((shade) => {
+            acc[`--tw-color-${colorKey}-${shade}`] = color[shade];
+          });
+        }
+        return acc;
+      }, {});
+
+      addBase({
+        ":root": cssVariables,
+      });
+    },
+  ],
 };
