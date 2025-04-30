@@ -32,14 +32,14 @@ class HomePageView extends CommonView
         include root_path('View/partials/search.php');
     }
 
-    public function announce_selection()
+    public function annonce_selection()
     {
-        include root_path('View/partials/announce_selection.php');
+        include root_path('View/partials/annonce_selection.php');
     }
 
-    public function add_announce_form()
+    public function add_annonce_form()
     {
-        include root_path('View/partials/add_announce_form.php');
+        include root_path('View/partials/add_annonce_form.php');
     }
 
     public function How_to_button()
@@ -55,11 +55,11 @@ class HomePageView extends CommonView
     {
         $this->diaporama(); // Render the diaporama
         $this->search(); // Render the search form
-        $this->announce_selection(); // Render the selection
+        $this->annonce_selection(); // Render the selection
         
-        // if user is logged in, show the add announcement form
+        // if user is logged in, show the add annoncement form
         if (!empty($_SESSION['profile'])) {
-            $this->add_announce_form(); // Render the add announcement form
+            $this->add_annonce_form(); // Render the add annoncement form
         } else {
             echo <<<HTML
                 <div class="info">

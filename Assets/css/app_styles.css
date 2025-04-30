@@ -31,13 +31,13 @@
     }
   
     .card {
-      @apply bg-white shadow-lg rounded-lg p-6;
+        @apply bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105;
     }
   
     .diaporama {
-      @apply relative w-full max-w-5xl mx-auto overflow-hidden my-6 rounded-3xl bg-transparent;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.22); /* Shadow around the entire diaporama */
-      position: relative; /* Ensure the container is positioned relative for the overlay */
+        @apply relative w-full max-w-5xl mx-auto overflow-hidden my-6 rounded-3xl bg-transparent;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.22); /* Shadow around the entire diaporama */
+        position: relative; /* Ensure the container is positioned relative for the overlay */
     }
 
     .diaporama::after {
@@ -60,30 +60,30 @@
     }
   
     .diaporama-slide {
-      @apply flex transition-transform ease-in-out duration-500 bg-transparent;
-      scroll-snap-type: x mandatory; /* Ensure snapping to each slide */
-      gap: 0; /* Remove any gaps between slides */
+        @apply flex transition-transform ease-in-out duration-500 bg-transparent;
+        scroll-snap-type: x mandatory; /* Ensure snapping to each slide */
+        gap: 0; /* Remove any gaps between slides */
     }
   
     .diaporama-item {
-      @apply flex-shrink-0 w-full h-full bg-transparent rounded-3xl; /* Ensure each item takes up the full width and height of the container */
-      scroll-snap-align: center; /* Snap each item to the center */
+        @apply flex-shrink-0 w-full h-full bg-transparent rounded-3xl; /* Ensure each item takes up the full width and height of the container */
+        scroll-snap-align: center; /* Snap each item to the center */
     }
   
     .diaporama-image {
-      @apply w-full h-full object-cover rounded-3xl; /* Ensure the image fills the container without distortion */
+        @apply w-full h-full object-cover rounded-3xl; /* Ensure the image fills the container without distortion */
     }
   
     .diaporama-button {
-      @apply absolute top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-black/30 hover:bg-accentYellow/50;
+        @apply absolute top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-black/30 hover:bg-accentYellow/50;
     }
   
     .diaporama-button-prev {
-      @apply left-4;
+        @apply left-4;
     }
   
     .diaporama-button-next {
-      @apply right-4;
+        @apply right-4;
     }
 
     .diaporama-dots {
@@ -324,5 +324,37 @@
 
     .info-icon {
         @apply text-warning-dark text-2xl;
+    }
+
+    .selection-section {
+        @apply my-10 px-6;
+    }
+
+    .selection-title {
+        @apply text-2xl font-heading font-bold text-primary-dark text-center mb-6;
+    }
+
+    .selection-grid {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+    }
+
+    .card-image {
+        @apply w-full h-48 object-cover;
+    }
+
+    .card-content {
+        @apply p-4;
+    }
+
+    .card-title {
+        @apply text-lg font-heading font-bold text-primary-dark mb-2;
+    }
+
+    .card-description {
+        @apply text-sm text-gray-600 mb-4;
+    }
+
+    .card-link {
+        @apply text-accentBlue font-bold hover:underline;
     }
 }

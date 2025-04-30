@@ -37,7 +37,28 @@
             return $transport;
         }
 
-        
+        public function formatAnnonceCard(array $annonce): array {
+            // Determine the image source
+            $imageSrc = asset("/?view=HomePage&action=viewImage&link=" . rawurlencode($annonce['ImageLink']));
+
+            // Format the title
+            $title = $annonce['AnnonceTypeTransport'] . '<br>' . $annonce['AnnoncePtDepart'] . '&rarr;' . $annonce['AnnoncePtArrivee'];
+
+            // Limit the description to 50 characters
+            $description = substr($annonce['AnnonceDescription'], 0, 50) . '...';
+
+            // Generate the link
+            $link = '/?view=Annonce&action=AnnonceDetails&id=' . $annonce['AnnonceID'];
+
+            return [
+                'id' => $annonce['AnnonceID'],
+                'image' => $imageSrc,
+                'title' => $title,
+                'description' => $description,
+                'link' => $link,
+            ];
+        }
+
         public function doSugguestTransaction($transaction){
             $this->m = new Transaction();
             $this->m->addTransactionsQuery($transaction);
