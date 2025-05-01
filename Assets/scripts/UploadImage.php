@@ -64,7 +64,7 @@ if (
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
         // Sanitize the file path to prevent SQL injection
-        $sanitizedPath = filter_var($targetPath, FILTER_SANITIZE_SPECIAL_CHARS);
+        $sanitizedPath = filter_var(basename(dirname($targetPath))."/".basename($targetPath), FILTER_SANITIZE_SPECIAL_CHARS);
 
         $query = new Query(
             "INSERT INTO image (ImageLink) VALUES (:imagelink)",

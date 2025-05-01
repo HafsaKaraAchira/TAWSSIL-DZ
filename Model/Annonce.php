@@ -1,5 +1,6 @@
 <?php 
-    require_once(__DIR__.'/../Model/Query.php');
+    require_once root_path('Model/Query.php');
+
     class Annonce
     {
 
