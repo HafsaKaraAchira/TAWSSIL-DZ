@@ -4,17 +4,9 @@
         <?php foreach ($this->annonces as $annonce): ?>
             <?php
                 // Use the controller's function to prepare card data
-                $cardData = $this->controller->formatAnnonceCard($annonce);
-
+                $data = CardView::formatFromAnnonce($annonce);
                 // Create and render the card
-                $card = new CardView(
-                    $cardData['id'],
-                    $cardData['image'],
-                    $cardData['title'],
-                    $cardData['description'],
-                    $cardData['link']
-                );
-                $card->render();
+                CardView::render($data);
             ?>
         <?php endforeach; ?>
     </div>

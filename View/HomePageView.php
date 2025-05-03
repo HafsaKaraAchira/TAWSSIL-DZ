@@ -3,7 +3,7 @@
 use Dom\HTMLElement;
 
 require_once root_path('View/CommonView.php');
-// require_once root_path('Vue/CadreVue.php');
+require_once root_path('View/partials/CardView.php');
 
 class HomePageView extends CommonView
 {

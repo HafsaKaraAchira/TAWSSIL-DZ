@@ -27,7 +27,6 @@
 
             $params = array(array(':id',$id,PDO::PARAM_INT) ) ;
             $query = new Query($sql,$params) ;
-            //var_dump($query->execute_query(PDO::FETCH_ASSOC)) ;
             $annonce = $query->execute_query(PDO::FETCH_ASSOC) ;
             if($query->getAffectedRowsCount() > 0 ){
                 if( $annonce[0]['AnnonceValidee'] || ($annonce[0]['AnnonceUserID']==$_SESSION['profile']['ProfileID']) )
@@ -178,7 +177,11 @@
             return $query->execute_query(PDO::FETCH_ASSOC) ;
         }
 
-        public function annoncesSelectionQuery($limit=8,$Selectioncriteria = 'RAND()'){
+        public function annoncesSelectionQuery($limit = 8, $Selectioncriteria = 'RAND()')
+        {
+            // Ensure $limit is an integer
+            $limit = (int) $limit;
+
             $sql = "SELECT 
                         AnnonceID,
                         AnnoncePtDepart,
@@ -192,12 +195,11 @@
                         annonce.AnnonceImage=image.ImageID 
                     WHERE annonce.AnnonceArchive = 0
                     AND annonce.AnnonceValidee = 1
-                    ORDER BY ".$Selectioncriteria." LIMIT :limit 
-                    ";
+                    ORDER BY $Selectioncriteria LIMIT :limit";
 
-            $params = array( array(':limit',$limit,PDO::PARAM_INT) )  ;
-            $query = new Query($sql,$params) ;
-            return $query->execute_query(PDO::FETCH_ASSOC) ;
+            $params = array(array(':limit', $limit, PDO::PARAM_INT));
+            $query = new Query($sql, $params);
+            return $query->execute_query(PDO::FETCH_ASSOC);
         }
 
         public function ProfileAnnoncesQuery(){
@@ -319,4 +321,3 @@
     }//Annonce
     
 ?>
-        

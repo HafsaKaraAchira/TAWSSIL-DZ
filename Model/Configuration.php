@@ -39,7 +39,24 @@ class Configuration
     {
         // Fetch general configuration
         $query = new Query("SELECT * FROM `configuration` WHERE 1");
-        $_SESSION['configuration']['general'] = $query->execute_query(PDO::FETCH_ASSOC)[0];
+        $result = $query->execute_query(PDO::FETCH_ASSOC);
+
+        if (!empty($result)) {
+            $_SESSION['configuration']['general'] = $result[0];
+        } else {
+            // Set default values if the configuration table is empty
+            $_SESSION['configuration']['general'] = [
+                'nbVueAnnonce' => 8, // Default number of announcements to display
+            ];
+        }
+
+        // Debugging: Output the session value
+        // echo "<pre>";
+        // print_r($_SESSION['configuration']['general']);
+        // echo "</pre>";
+
+        // error_log("Configuration Query Result: " . print_r($result, true));
+        error_log("Session Configuration: " . print_r($_SESSION['configuration'], true));
     }
 
     private function loadWilayas()

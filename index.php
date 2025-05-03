@@ -1,9 +1,10 @@
 <?php
-ob_start();
-session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+ob_start();
+session_start();
 
 // Filesystem root path for includes
 define('ROOT_PATH', __DIR__);
@@ -15,9 +16,27 @@ define('APP_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));
 // Load helper functions
 require_once ROOT_PATH . '/Utils/helpers.php';
 
+spl_autoload_register(function ($class) {
+    $paths = [
+        ROOT_PATH . '/Controller/',
+        ROOT_PATH . '/Model/',
+        ROOT_PATH . '/View/partials/', // for CardView and reusable components
+        ROOT_PATH . '/View/',
+    ];
+
+    foreach ($paths as $path) {
+        $file = $path . $class . '.php';
+        if (file_exists($file)) {
+            require_once $file;
+            return;
+        }
+    }
+});
+
+
 // Load configuration model
-require_once ROOT_PATH . '/Model/Configuration.php';
-// Configuration::getConfiguration();
+require_once root_path('/Model/Configuration.php');
+Configuration::getInstance();
 
 define('IMG_FOLDER', ROOT_PATH . 'Assets/img/');
 
@@ -43,13 +62,15 @@ $Default_controller = 'HomePage';
 #### routing to appropriate Controller
 $Vue_name = ($_GET['view'] ?? $Default_controller);
 $controller_name = $Controllers[$Vue_name] . 'Controller';
+
 // if (!class_exists($controller_name)) {
 //     // If the controller class does not exist, redirect to the default controller
 //     $controller_name = $Controllers[$Default_controller] . 'Controller';
 //     $Vue_name = $Default_controller;
 // }
+
 // load the controller class
-require_once(ROOT_PATH . '/Controller' . '/' . $controller_name . '.php');
+require_once(ROOT_PATH . '/Controller/' . $controller_name . '.php');
 
 $c = new $controller_name($Vue_name);
 //var_dump($controller_name);

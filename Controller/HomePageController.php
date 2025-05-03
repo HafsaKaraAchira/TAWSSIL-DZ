@@ -16,23 +16,29 @@
             return $slides ;
         }
 
-        public function getAnnonceSelection(){
-            //var_dump(Configuration::getConfiguration());
-            // Configuration::getConfiguration() ;
+        public function getAnnonceSelection()
+        {
             // Load configuration and static data
             Configuration::getInstance();
-            $nbAnnonces = (int)$_SESSION['configuration']['general']['nbVueAnnonce'] ;
-            //var_dump($nbAnnonces);
-            $this->m = new Annonce() ;
+
+            // Retrieve the number of announcements to display from the session configuration
+            $nbAnnonces = $_SESSION['configuration']['general']['nbVueAnnonce'] ;//?? 8; // Default to 8 if not set
+
+            // Initialize the Annonce model
+            $this->m = new Annonce();
+
+            // Fetch the selected announcements based on the configured number
             $annonces = $this->m->annoncesSelectionQuery($nbAnnonces);
-            return $annonces ;
+
+            // Return the fetched announcements
+            return $annonces;
         }
 
         public function viewPage(){
             $slides = $this->getDiaporama() ;
-            $annonces = []; //$this->getAnnonceSelection() ;
-            $v = new HomePageView($slides,$annonces);
-            $v->view();
+            $annonces = $this->getAnnonceSelection() ;
+            $this->v = new HomePageView($slides,$annonces);
+            $this->v->view();
         }
     }
 ?>
